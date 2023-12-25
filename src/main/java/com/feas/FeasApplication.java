@@ -50,6 +50,8 @@ public class FeasApplication {
 												.bearerFormat("JWT")
 								)
 				)
+
+
 				.info(new Info().title(apiTitle).version("3.14"));
 	}
 
