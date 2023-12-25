@@ -17,7 +17,7 @@ import com.feas.service.ifc.FilesStorageService;
 
 @Service
 public class FilesStorageServiceImpl implements FilesStorageService {
-      
+
 	 // private String dirctory=new String("/home/ftpuser/") ;
 	  private String dirctory="E:\\appdocument\\" ;
 
