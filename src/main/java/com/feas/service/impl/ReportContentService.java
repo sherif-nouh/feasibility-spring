@@ -33,8 +33,8 @@ public class ReportContentService {
     }
 
     public List<ReportContent> getReportContent(BigDecimal requestNumberIf) {
-
-        return (reportContentRepository.getAllReportContentByRequestNumber(requestNumberIf));
+        List<ReportContent> reportList=reportContentRepository.getAllReportContentByRequestNumber(requestNumberIf);
+        return reportList;
     }
 
     public Optional<ReportContent> getById(Long id){

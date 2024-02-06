@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface ReportContentRepository extends JpaRepository<ReportContent, Long> {
-    @Query("from ReportContent p where p.requestNumberIf=:requestNumberId and p.operation <> 'D' ")
+    @Query("from ReportContent p where p.requestNumberIf=:requestNumberId and (p.operation != 'D'or p.operation IS NULL )")
     List<ReportContent> getAllReportContentByRequestNumber(@Param("requestNumberId") BigDecimal requestNumberId);
 
 

@@ -26,7 +26,7 @@ public class ReportContent implements Serializable {
 	@GenericGenerator(name="custom_seq", strategy = "com.feas.domain.config.SequenceGenerator")
 	@GeneratedValue(generator = "custom_seq")
 	@Column(name="REPORT_CONTENT_ID")
-	private long reportContentId;
+	private Long reportContentId;
 
 	@Column(name="NUMBER_AR")
 	private String numberAr;
