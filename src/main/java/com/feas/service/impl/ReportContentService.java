@@ -1,6 +1,7 @@
 package com.feas.service.impl;
 
 import com.feas.domain.entity.FeasbilityRejection;
+import com.feas.domain.entity.Introduction;
 import com.feas.domain.entity.ReportContent;
 import com.feas.domain.entity.dto.FeasbilityRejectionDTO;
 import com.feas.domain.entity.dto.ReportContentDTO;
@@ -10,6 +11,8 @@ import com.feas.service.mapper.ServiceObjectMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -29,8 +32,10 @@ public class ReportContentService {
         this.modelMapper = modelMapper;
     }
 
+    public List<ReportContent> getReportContent(BigDecimal requestNumberIf) {
 
-
+        return (reportContentRepository.getAllReportContentByRequestNumber(requestNumberIf));
+    }
 
     public Optional<ReportContent> getById(Long id){
         return reportContentRepository.findById(id);

@@ -1,5 +1,6 @@
 package com.feas.api.controller;
 
+import com.feas.domain.entity.Introduction;
 import com.feas.domain.entity.ReportContent;
 import com.feas.domain.entity.dto.ReportContentDTO;
 import com.feas.persistence.repository.IntroductionRepository;
@@ -32,8 +33,10 @@ public class ReportContentController {
     }
 
     @GetMapping
-    public List<ReportContent> getAllReportContentByRequestNumber(@RequestParam(defaultValue = "-1") BigDecimal requestNumberIf){
-        return (reportContentRepository.getAllReportContentByRequestNumber(requestNumberIf));
+    public BaseResponse< List<ReportContent>> getAllReportContentByRequestNumber(@RequestParam(defaultValue = "-1") BigDecimal requestNumberIf){
+        List<ReportContent> breakEvenPointCustomEntity = reportContentService.getReportContent(requestNumberIf);
+        return new BaseResponse<>( breakEvenPointCustomEntity,HttpStatus.OK.toString());
+
     }
 
     @PutMapping
