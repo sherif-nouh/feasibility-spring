@@ -20,6 +20,7 @@ public interface EstimatedYearlySaleRepository extends JpaRepository<EstimatedYe
     @Query("from EstimatedYearlySales p where p.requestNumberIf=:requestNumberId and p.operation <> 'D' order by p.sno")
     List<EstimatedYearlySales> getAllEstimatedYearlySaleByRequestNumber(@Param("requestNumberId") BigDecimal requestNumberId);
 
+
     @Query("from EstimatedYearlySales p where p.requestNumberIf=:requestNumberId and p.operation <> 'D' order by p.sno")
     Page<EstimatedYearlySales> getAllEstimatedYearlySaleByRequestNumberPage(@Param("requestNumberId") BigDecimal requestNumberId, Pageable page);
 

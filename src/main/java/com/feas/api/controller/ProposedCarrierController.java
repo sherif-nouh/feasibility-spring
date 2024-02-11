@@ -81,16 +81,19 @@ public class ProposedCarrierController {
     @PutMapping
     public BaseResponse<ProposedCarrier> updateProposedCarrier( @RequestBody ProposedCarrierDTO proposedCarrier) {
         ProposedCarrier map = modelMapper.map(proposedCarrier, ProposedCarrier.class);
+        int udatedRecord=0;
         if(proposedCarrier!=null && "D".equalsIgnoreCase(proposedCarrier.getOperation()) ){
-            map.setOperation("D");
+            proposedCarrier.setOperation("D");
+            udatedRecord = proposedCarrierRepository.deleteFromProposedCarrier(proposedCarrier.getProposedCarrierId());
         }else{
-            map.setOperation("U");
+            proposedCarrier.setOperation("U");
+            udatedRecord=proposedCarrierService.updateFromProposedCarrier(proposedCarrier);
         }
-        map.setDateStamp(new Date());
-        ProposedCarrier prop = proposedCarrierRepository.save(map);
+        //proposedCarrier.setDateStamp(new Date());
+       // ProposedCarrier prop = proposedCarrierService.save(proposedCarrier);
         /* prop = proposedCarrierRepository.save(map);*/
-        if(prop!=null){
-            return new BaseResponse(prop,HttpStatus.OK.toString());
+        if(udatedRecord !=0){
+            return new BaseResponse(map,HttpStatus.OK.toString());
         }else{
             return new BaseResponse(new BaseResponse<>(null),HttpStatus.BAD_REQUEST.toString());
         }

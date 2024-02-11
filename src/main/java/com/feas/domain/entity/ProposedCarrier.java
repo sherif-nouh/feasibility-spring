@@ -28,7 +28,7 @@ public class ProposedCarrier implements Serializable {
     @GenericGenerator(name="custom_seq", strategy = "com.feas.domain.config.SequenceGenerator")
     @GeneratedValue(generator = "custom_seq")
     @Column(name="PROPOSED_CARRIER_ID")
-    private long proposedCarrierId;
+    private Long proposedCarrierId;
 
     @Column(name="ACTUAL_REMARKS_TX")
     private String actualRemarksTx;

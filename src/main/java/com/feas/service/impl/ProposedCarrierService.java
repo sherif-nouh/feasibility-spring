@@ -64,4 +64,33 @@ public class ProposedCarrierService {
     public Optional<ProposedCarrier> findById(Long id) {
         return proposedCarrierRepository.findById(id);
     }
+
+    public int updateFromProposedCarrier(ProposedCarrierDTO proposedCarrier) {
+
+        int updatedRecord = proposedCarrierRepository.updateFromProposedCarrier(proposedCarrier.getProposedCarrierId(),
+                proposedCarrier.getActualRemarksTx(),
+                proposedCarrier.getApprovedRemarksTx(),
+                proposedCarrier.getExchangeRateCy(),
+                proposedCarrier.getForeignCodeIf(),
+                proposedCarrier.getLicenseNumberIf(),
+                proposedCarrier.getManufCtryCodeIf(),
+                proposedCarrier.getProjectNumberIf(),
+                proposedCarrier.getProposedRemarksBy(),
+                proposedCarrier.getQuantityActual(),
+                proposedCarrier.getQuantityApproved(),
+                proposedCarrier.getQuantityNr(),
+                proposedCarrier.getRemarks(),
+                proposedCarrier.getRemarksActualBy(),
+                proposedCarrier.getRemarksApprovedBy(),
+                proposedCarrier.getRemarksProposedBy(),
+                proposedCarrier.getRequestNumberIf(),
+                proposedCarrier.getSerialNumberId(),
+                proposedCarrier.getUnitPriceCy(),
+                proposedCarrier.getUserName(),
+                proposedCarrier.getVehCodeIf(),
+                proposedCarrier.getVehType(),
+                proposedCarrier.getVehicalName(),
+                new Date());
+        return updatedRecord;
+    }
 }
