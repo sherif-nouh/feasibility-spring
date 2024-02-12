@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class reportTitlePage implements Serializable {
+public class ReportTitlePage implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
