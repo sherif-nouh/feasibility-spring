@@ -26,8 +26,7 @@ public class ReportContentDefault implements Serializable {
     @Column(name="DETAIL_TX")
     private String detailTx;
 
-
-
+    @Id
     @Column(name="CONTENT_ID")
     private BigDecimal contentId;
 

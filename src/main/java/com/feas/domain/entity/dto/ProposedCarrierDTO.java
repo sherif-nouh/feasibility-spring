@@ -1,9 +1,7 @@
 package com.feas.domain.entity.dto;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.math.BigDecimal;
@@ -12,10 +10,14 @@ import java.util.Date;
 /**
  * @author Sherif Nouh
  * @Date ٢٤/٠٩/٢٠٢٣
+ *
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Setter
+@Getter
+
 public class ProposedCarrierDTO {
 
     private long proposedCarrierId;

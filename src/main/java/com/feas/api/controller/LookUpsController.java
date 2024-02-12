@@ -53,6 +53,9 @@ public class LookUpsController {
 	@Autowired
 	private ManpowerNationalityRepository manpowerNationalityRepository;
 
+	@Autowired
+	private ReportContentRepository reportContentRepository;
+
 	@GetMapping(value = "/country")
 	@ResponseBody
 	public BaseResponse<List<Country>> getAllCountry() {
@@ -170,5 +173,12 @@ public class LookUpsController {
 	public BaseResponse<List<ManpowerNationality>> getAllManPowerNationality() {
 		List<ManpowerNationality> manpowerNationalities= manpowerNationalityRepository.findAll();
 		return new BaseResponse<>(manpowerNationalities,HttpStatus.OK.toString());
+	}
+	@GetMapping(value = "/ReportContent")
+	@ResponseBody
+	public BaseResponse<List<ReportContentDefault>> getAllReportTitle() {
+		List<ReportContentDefault> reportTitleRepositoryAll= reportContentRepository.findAll();
+		return new BaseResponse<List<ReportContentDefault>>(reportTitleRepositoryAll,HttpStatus.OK.toString());
+
 	}
 }
