@@ -17,6 +17,9 @@ public interface FinishedGoodsStorageRepository extends JpaRepository<FinishedGo
     @Query("from FinishedGoodsStorage p where p.requestNumberIf=:requestNumberId and p.operation <> 'D' order by p.sno")
     List<FinishedGoodsStorage> getAllFinishedGoodsStorageByRequestNumber(@Param("requestNumberId") BigDecimal requestNumberId);
 
+    @Query("from FinishedGoodsStorage p where p.requestNumberIf=:requestNumberId and licenseNumberIf=:licenseNumberIf and p.operation <> 'D'   order by p.sno")
+    List<FinishedGoodsStorage> getAllFinishedGoodsStorageByReqIdAndLicNo(@Param("requestNumberId") BigDecimal requestNumberId,@Param("licenseNumberIf") BigDecimal licenseNumberIf);
+
     @Query(value = "select SUM(NVL(FinishedGoodsStorage.AREA_FOR_STORAGE_NR,0)) grandTotal  \n" +
         "from FINISHED_GOODS_STORAGE FinishedGoodsStorage   \n" +
         "where FINISHEDGOODSSTORAGE.REQUEST_NUMBER_IF=:requestNumberId \n " +
