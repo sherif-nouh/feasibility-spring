@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
  * json structures. The error response follows RFC7807 - Problem Details for
  * HTTP APIs (https://tools.ietf.org/html/rfc7807).
  * <p>
- * By Mohammed Salah: Huge logic to handle and huge response to reply to client
+ * Huge logic to handle and huge response to reply to client
  * with it, Ignored Zalando library usage, and sent a simple @BaseResponse
  * custom response. Please note also that this exception translator is not
  * working for any FILTER runtime exception Will catch filter
