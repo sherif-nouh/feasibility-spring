@@ -52,6 +52,10 @@ public class FinishedGoodsStorageService {
         return finishedGoodsStorageRepository.findById(id);
     }
 
+    public List<FinishedGoodsStorage> getAllFinishedGoodsStorageByReqIdAndLicNo(BigDecimal reqId,BigDecimal licNo) {
+        return finishedGoodsStorageRepository.getAllFinishedGoodsStorageByReqIdAndLicNo(reqId,licNo);
+    }
+
     public FinishedGoodsStorage save(FinishedGoodsStorageDTO finishedGoodsStorageDTO) {
         FinishedGoodsStorage map = modelMapper.map(finishedGoodsStorageDTO, FinishedGoodsStorage.class);
         return finishedGoodsStorageRepository.save(map);
