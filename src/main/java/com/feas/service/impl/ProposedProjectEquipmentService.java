@@ -93,7 +93,7 @@ public class ProposedProjectEquipmentService {
             long manufCtryCod = propObj.getManufCtryCodeIf() == null ? 0 : propObj.getManufCtryCodeIf();
             Long u1 = propObj.getQuantityNr() == null ? 0 : propObj.getQuantityNr().longValue();
             BigDecimal quantity = u1 == null ? new BigDecimal(0) : new BigDecimal(u1);
-            BigDecimal serial = propObj.getSerialNumberId() == null ? new BigDecimal(0) : new BigDecimal(propObj.getSerialNumberId());
+            BigDecimal serial = propObj.getSerialNumberId() == null ? new BigDecimal(0) : propObj.getSerialNumberId();
             int compareVal = propObj.getEquipPercIf() == null ? 0 : propObj.getEquipPercIf().intValue();
             BigDecimal locEquip = new BigDecimal(0);
 

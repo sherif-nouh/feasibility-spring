@@ -142,7 +142,7 @@ public class ProposedProjectEquipment implements Serializable {
 	private Long requestNumberIf;
 
 	@Column(name="SERIAL_NUMBER_ID")
-	private Long serialNumberId;
+	private BigDecimal serialNumberId;
 
 	@Column(name="SNO_S")
 	private Long snoS;

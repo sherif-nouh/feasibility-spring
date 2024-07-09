@@ -54,7 +54,7 @@ public class LookUpsController {
 	private ManpowerNationalityRepository manpowerNationalityRepository;
 
 	@Autowired
-	private ReportContentRepository reportContentRepository;
+	private ReportContentDefaultRepository reportContentRepository;
 
 	@GetMapping(value = "/country")
 	@ResponseBody

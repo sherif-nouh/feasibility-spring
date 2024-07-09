@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 
-public interface ReportContentRepository extends JpaRepository<ReportContentDefault, Long> {
+public interface ReportContentDefaultRepository extends JpaRepository<ReportContentDefault, Long> {
 
 }
