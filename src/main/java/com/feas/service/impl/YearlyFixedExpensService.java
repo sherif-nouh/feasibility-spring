@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -64,7 +65,7 @@ public class YearlyFixedExpensService {
                 .add(yearlyFixedEx.getAuditExpCy()
                         .add(yearlyFixedEx.getAuditExpCy()
                                 .add(yearlyFixedExpensRepository.getTrvlAllwConsultExpCy(requestNumberId)
-                                        .add(yearlyFixedEx.getProfitsNotinclProdCy()
+                                        .add(((yearlyFixedEx.getProfitsNotinclProdCy() == null)  ? new BigDecimal(0) : yearlyFixedEx.getProfitsNotinclProdCy())
                                                 .add(yearlyFixedEx.getVehInsurCy()
                                                         .add(yearlyFixedEx.getNonroutineMaintExpCy()
                                                                 .add(getVariableExpensesValues(requestNumberId))))))))
@@ -89,7 +90,7 @@ public class YearlyFixedExpensService {
 
         BigDecimal totalYearlyFixedExpenses =indSpecRentCY
                 .add(salaryCY
-                        .add(yearlyFixedEx.getAllowancesCy() //we need the allawances without calculation here   the above as getAllowancesCy() is not getting calculated in total yearly fixed value.
+                        .add(((yearlyFixedEx.getAllowancesCy() == null)  ? new BigDecimal(0) : yearlyFixedEx.getAllowancesCy()) //we need the allawances without calculation here   the above as getAllowancesCy() is not getting calculated in total yearly fixed value.
                                 .add(auditExpCY.add(adverExpCY
                                         .add(travelAllowanceConsltCY
                                                 .add(genExpCY

@@ -42,7 +42,8 @@ public class Introduction implements Serializable {
 	@Column(name="OPERATION")
 	private String operation;
 
-
+	@Column(name="USER_NAME")
+	private String userName;
 
 	@Column(name="REQUEST_NUMBER_IF")
 	private BigDecimal requestNumberIf;

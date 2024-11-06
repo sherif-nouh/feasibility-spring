@@ -27,14 +27,14 @@ public class YearlyVariableExpensService {
 
     public YearlyVariableExpens gelAllYearlyVariableExpensByRequestAndLicence(long requestNumberIf,long licenseNumberIf){
 
-        YearlyVariableExpens firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc = yearlyVariableExpensRepository.findFirstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc(requestNumberIf, licenseNumberIf);
-      if(firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc!=null) {
+        YearlyVariableExpens yvr = yearlyVariableExpensRepository.findFirstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc(requestNumberIf, licenseNumberIf);
+      if(yvr!=null) {
           CalculatedYearlyVariableExpense calculatedYearlyVariableExpense = yearlyVariableExpensRepository.getCalculatedYearlyVariableExpense(licenseNumberIf, requestNumberIf);
           if(calculatedYearlyVariableExpense!=null){
-              firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.setTotal5Perc(calculatedYearlyVariableExpense.getTotal5Perc());
+              yvr.setTotal5Perc(calculatedYearlyVariableExpense.getTotal5Perc());
 
-              firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.setIndirectLabour(yearlyVariableExpensRepository.getDirectLaborSalarCy(requestNumberIf).multiply(firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.getAliwDirectLaborCy().divide(new BigDecimal(100),3, RoundingMode.HALF_EVEN)));
-              firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.setTotalMaintenance(calculatedYearlyVariableExpense.getTotalMaintenance());
+              yvr.setIndirectLabour(yearlyVariableExpensRepository.getDirectLaborSalarCy(requestNumberIf).multiply(yvr.getAliwDirectLaborCy().divide(new BigDecimal(100),3, RoundingMode.HALF_EVEN)));
+              yvr.setTotalMaintenance(calculatedYearlyVariableExpense.getTotalMaintenance());
              // firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.setYearlyVariableExpenses(calculatedYearlyVariableExpense.getYearlyVariableExpenses());
           }
           BigDecimal rawMatCovPackCy = yearlyVariableExpensRepository.getRawMatCovPackCy(requestNumberIf);
@@ -42,25 +42,25 @@ public class YearlyVariableExpensService {
           BigDecimal genProdFacUtiCyQuery = yearlyVariableExpensRepository.genProdFacUtiCyQuery(requestNumberIf);
 
           if(rawMatCovPackCy!=null){
-              firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.setRawMatCovPackCy(rawMatCovPackCy);
+              yvr.setRawMatCovPackCy(rawMatCovPackCy);
           }
           if(directLaborSalaryCy!=null){
-              firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.setDirectLaborSalarCy(directLaborSalaryCy);
+              yvr.setDirectLaborSalarCy(directLaborSalaryCy);
           }
           if(genProdFacUtiCyQuery!=null){
-              firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.setGenProdFacUtiCy(genProdFacUtiCyQuery);
+              yvr.setGenProdFacUtiCy(genProdFacUtiCyQuery);
           }
 
-          firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.setYearlyVariableExpenses(
-                  firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.getRawMatCovPackCy()
+          yvr.setYearlyVariableExpenses(
+                  ( yvr.getRawMatCovPackCy() == null ? new BigDecimal(0) : yvr.getRawMatCovPackCy() )
                           .add(yearlyVariableExpensRepository.getDirectLaborSalarCy(requestNumberIf))
-                          .add(firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.getIndirectLabour())
-                          .add(firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.getEmpInsuCy())
-                          .add(firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.getGenProdFacUtiCy())
-                          .add(firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.getPrintStatCy())
-                          .add(firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.getTotalMaintenance())
-                          .add(firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc.getTotal5Perc()));
-          return firstByRequestNumberIfAndLicenseNumberIfOrderByRequestNumberIfDesc;
+                          .add(yvr.getIndirectLabour())
+                          .add(( yvr.getEmpInsuCy() == null ? new BigDecimal(0) : yvr.getEmpInsuCy() ))
+                          .add(yvr.getGenProdFacUtiCy())
+                          .add(yvr.getPrintStatCy())
+                          .add(yvr.getTotalMaintenance())
+                          .add(yvr.getTotal5Perc()));
+          return yvr;
       }
       return null;
     }

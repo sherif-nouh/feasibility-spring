@@ -39,11 +39,13 @@ public class EstimatedYearlySaleController {
     }
 
     @GetMapping
+    @ResponseBody
     public BaseResponse<List<EstimatedYearlySales>> getAllEstimatedYearlySaleByRequestNumber(@RequestParam(defaultValue = "-1") BigDecimal requestNumberIf){
         List<EstimatedYearlySales> estimatedYearlySales = estimatedYearlySaleService.getAllFinishedGoodsStorageByRequestNumber(requestNumberIf);
         return new BaseResponse<>(estimatedYearlySales, HttpStatus.OK.toString());
     }
     @GetMapping("/summary")
+    @ResponseBody
     public BaseResponse<EstimatedYearlySaleSummary> getYearlySaleSummaryBaseResponse(@RequestParam(defaultValue = "-1") BigDecimal requestNumberIf){
         EstimatedYearlySaleSummary estimatedYearlySaleSummary = estimatedYearlySaleService.getEstimatedYearlySaleSummary(requestNumberIf);
         return new BaseResponse<>(estimatedYearlySaleSummary, HttpStatus.OK.toString());
@@ -61,6 +63,7 @@ public class EstimatedYearlySaleController {
     }
 
     @PostMapping
+    @ResponseBody
     public BaseResponse<EstimatedYearlySales> addEstimatedYearlySale(@RequestBody EstimatedYearlySaleDTO estimatedYearlySaleDTO) throws URISyntaxException {
         estimatedYearlySaleDTO.setDateStamp(new Date());
         EstimatedYearlySales proposedStock = estimatedYearlySaleService.addEstimatedYearlySale(estimatedYearlySaleDTO);
@@ -75,6 +78,7 @@ public class EstimatedYearlySaleController {
 
 
     @PutMapping
+    @ResponseBody
     public BaseResponse<EstimatedYearlySales> updateEstimatedYearlySale(@RequestBody EstimatedYearlySaleDTO estimatedYearlySaleDTO) throws URISyntaxException {
         if(estimatedYearlySaleDTO!=null && "D".equalsIgnoreCase(estimatedYearlySaleDTO.getOperation()) ){
             estimatedYearlySaleDTO.setOperation("D");
@@ -91,10 +95,9 @@ public class EstimatedYearlySaleController {
     }
 
     @PutMapping("/summary")
-    public BaseResponse<EstimatedYearlySaleSummary> updateSummary(@RequestBody EstimatedYearlySaleSummary estimatedYearlySaleDTO
-                                                                  ,@RequestParam(defaultValue = "-1") BigDecimal requestNumberIf
-                                                                  ) throws URISyntaxException {
-
+    @ResponseBody
+    public BaseResponse<EstimatedYearlySaleSummary> updateSummary(@RequestParam(defaultValue = "-1") BigDecimal requestNumberIf ,
+                                                                  @RequestBody EstimatedYearlySaleSummary estimatedYearlySaleDTO) throws URISyntaxException {
         int estimatedYearlySaleSummary = estimatedYearlySaleService.updateSummary(estimatedYearlySaleDTO,requestNumberIf);
         if(estimatedYearlySaleSummary!=0){
             return new BaseResponse(estimatedYearlySaleDTO,HttpStatus.OK.toString());
@@ -102,7 +105,6 @@ public class EstimatedYearlySaleController {
             return new BaseResponse(new BaseResponse<>(null),HttpStatus.BAD_REQUEST.toString());
         }
     }
-
 
     @DeleteMapping("/{estimatedYearlySalesIdId}")
     public BaseResponse<String> deleteEstimatedYearlySale(@PathVariable Long estimatedYearlySalesIdId) throws URISyntaxException {

@@ -127,7 +127,6 @@ public class EstimatedYearlySaleService {
         if(estimatedYearlySaleSummary!=null){
              returnRecord = projectRevenueRepository.updateYrlySalesValCyFromEstimatedYearlySales(requestNumberIf.longValue(), estimatedYearlySaleSummary.getSumTotalPrice());
         }
-
         return returnRecord;
     }
 }

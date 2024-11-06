@@ -54,7 +54,19 @@ public class LookUpsController {
 	private ManpowerNationalityRepository manpowerNationalityRepository;
 
 	@Autowired
-	private ReportContentDefaultRepository reportContentRepository;
+	private ReportContentLookupRepository reportContentRepository;
+
+	@Autowired
+	private VehicalCodeRepository vehicalCodeRepository;
+
+	@Autowired
+	private ManpowerRepository manpowerRepository;
+
+	@Autowired
+	private ManpowerTypeRepository manpowerTypeRepository;
+
+	@Autowired
+	private ManpowerCatRepository manpowerCatRepository;
 
 	@GetMapping(value = "/country")
 	@ResponseBody
@@ -181,4 +193,61 @@ public class LookUpsController {
 		return new BaseResponse<List<ReportContentDefault>>(reportTitleRepositoryAll,HttpStatus.OK.toString());
 
 	}
+
+	@GetMapping(value = "/activeProducts")
+	@ResponseBody
+	public BaseResponse<List<Product>> getAllActiveProducts() {
+		List<Product> productLst= productRepository.findByOperationIsNullOrOperationNot("D");
+		return new BaseResponse<List<Product>>(productLst,HttpStatus.OK.toString());
+
+	}
+
+	@GetMapping(value = "/activeVehicleCodes")
+	@ResponseBody
+	public BaseResponse<List<VehicalCode>> getAllActiveVehicleCode() {
+		List<VehicalCode> vehicleCodeLst= vehicalCodeRepository.findByOperationIsNullOrOperationNot("D");
+		return new BaseResponse<List<VehicalCode>>(vehicleCodeLst,HttpStatus.OK.toString());
+
+	}
+
+	@GetMapping(value = "/activeManpower")
+	@ResponseBody
+	public BaseResponse<List<Manpower>> getActiveManpower() {
+		List<Manpower> manpowerList= manpowerRepository.findByOperationIsNullOrOperationNot("D");
+		return new BaseResponse<List<Manpower>>(manpowerList,HttpStatus.OK.toString());
+
+	}
+//
+	@GetMapping(value = "/activeManpowerType")
+	@ResponseBody
+	public BaseResponse<List<ManpowerType>> getActiveManpowerType() {
+		List<ManpowerType> manpowerTypeList= manpowerTypeRepository.findByOperationNot("D");
+		return new BaseResponse<List<ManpowerType>>(manpowerTypeList,HttpStatus.OK.toString());
+
+	}
+
+	@GetMapping(value = "/activeManpowerCat")
+	@ResponseBody
+	public BaseResponse<List<ManpowerCat>> getActiveManpowerCat() {
+		List<ManpowerCat> manpowerCatList= manpowerCatRepository.findByOperationIsNullOrOperationNot("D");
+		return new BaseResponse<List<ManpowerCat>>(manpowerCatList,HttpStatus.OK.toString());
+
+	}
+
+	@GetMapping(value = "/activeMaterials")
+	@ResponseBody
+	public BaseResponse<List<Material>> getActiveMaterial() {
+		List<Material> materialList= materialRepository.findByOperationIsNullOrOperationNot("D");
+		return new BaseResponse<List<Material>>(materialList,HttpStatus.OK.toString());
+
+	}
+
+	@GetMapping(value = "/activeEquipmentCode")
+	@ResponseBody
+	public BaseResponse<List<EquipmentCode>> getActiveEquipmentCode() {
+		List<EquipmentCode> equipmentCodeLst= equipmentCodeRepository.findByOperationIsNullOrOperationNot("D");
+		return new BaseResponse<List<EquipmentCode>>(equipmentCodeLst,HttpStatus.OK.toString());
+
+	}
+
 }

@@ -7,6 +7,7 @@ import com.feas.domain.entity.dto.IndustrialProfitROVODTO;
 import com.feas.domain.entity.dto.YearlyFixedVariableExpenseDTO;
 import com.feas.persistence.repository.EconomicalStudySummaryRepository;
 import com.feas.persistence.repository.YearlyDepreciationRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.server.DelegatingServerHttpResponse;
 import org.springframework.stereotype.Service;
 

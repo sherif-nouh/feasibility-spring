@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -83,7 +84,7 @@ public class ProductionLineAreaService {
                 additionalArea= byRequestNumberIdAndLicenseNumberIf.get().getAdditionalArea();
             }
 
-            BigDecimal sum1=new BigDecimal(additionalArea).divide(new BigDecimal(100)).multiply( (prod.getSumTotalProductionLine()));
+            BigDecimal sum1=new BigDecimal(((Objects.nonNull(additionalArea) && additionalArea != null) ? additionalArea : 0)).divide(new BigDecimal(100)).multiply( (prod.getSumTotalProductionLine() != null ? prod.getSumTotalProductionLine() : new BigDecimal(0)));
             BigDecimal sum11 = sum1.setScale(3, RoundingMode.HALF_UP);
             prod.setSumTotal(sum11.add(prod.getSumTotalProductionLine()));
         });
